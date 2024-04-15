@@ -14,12 +14,14 @@ void printBoard(BoardType &board);
 
 void playerMove(BoardType &board);
 
-void computerMove(BoardType& board);
+void computerMove(BoardType &board);
+
+bool isValidMoveX(BoardType &board, int row, int col);
 
 int main() {
     BoardType board;
     initializeBoard(board);
-    printBoard(board);
+//    printBoard(board);
     playerMove(board);
     printBoard(board);
     computerMove(board);
@@ -51,16 +53,35 @@ void initializeBoard(BoardType &board) {
 
 void playerMove(BoardType &board) {
     int row, col;
-    cout << "Enter row and column for your move: ";
-    cin >> row >> col;
-    board[row][col] = 'X';
-} //end playerMove
+    while(true){
+        printBoard(board);
+        cout << "Enter a row and column for your move:";
+        cin >> row >> col;
+        if (isValidMoveX(board, row, col)){
+            board[row][col] = 'X';
+            break;
+        }else{
+            cout << "Invalid move. Try again." << endl;
+        }
+    }
 
-void computerMove(BoardType& board){
+} //end 'X' playerMove
+
+void computerMove(BoardType &board) {
     int row, col;
     cout << "Enter the row and column for your move" << endl;
     cin >> row >> col;
     board[row][col] = 'O';
 
+}//end 'X' playerMove
 
-}
+bool isValidMoveX(BoardType &board, int row, int col) {
+    if (row < 0 || col < 0 || row >= BOARD_SIZE || col >= BOARD_SIZE || board[row][col] != ' ') {
+        cout << "Invalid move. Try again." << endl;
+        playerMove(board);
+        return false;
+    } else {
+        board[row][col] = 'X';
+        return true;
+    }
+} //end isValidMove
