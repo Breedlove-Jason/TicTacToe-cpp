@@ -12,11 +12,19 @@ void initializeBoard(BoardType &board);
 
 void printBoard(BoardType &board);
 
+void playerMove(BoardType &board);
+
+void computerMove(BoardType& board);
+
 int main() {
     BoardType board;
     initializeBoard(board);
     printBoard(board);
-    
+    playerMove(board);
+    printBoard(board);
+    computerMove(board);
+    printBoard(board);
+
     return 0;
 }
 
@@ -40,3 +48,19 @@ void initializeBoard(BoardType &board) {
         row.fill(' ');
     }
 } //end initializeBoard
+
+void playerMove(BoardType &board) {
+    int row, col;
+    cout << "Enter row and column for your move: ";
+    cin >> row >> col;
+    board[row][col] = 'X';
+} //end playerMove
+
+void computerMove(BoardType& board){
+    int row, col;
+    cout << "Enter the row and column for your move" << endl;
+    cin >> row >> col;
+    board[row][col] = 'O';
+
+
+}
