@@ -12,7 +12,7 @@
 
 # =============================================================================
 # Project: TicTacToe
-# Configurations: Debug
+# Configurations: Release
 # =============================================================================
 
 #############################################
@@ -24,7 +24,7 @@ ninja_required_version = 1.5
 #############################################
 # Set configuration variable for custom commands.
 
-CONFIGURATION = Debug
+CONFIGURATION = Release
 # =============================================================================
 # Include auxiliary files.
 
@@ -39,7 +39,7 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = /Users/jason/TicTacToe-cpp/cmake-build-debug/
+cmake_ninja_workdir = /Users/jason/TicTacToe-cpp/cmake-build-release/
 # =============================================================================
 # Object build statements for EXECUTABLE target TicTacToe
 
@@ -49,9 +49,9 @@ cmake_ninja_workdir = /Users/jason/TicTacToe-cpp/cmake-build-debug/
 
 build cmake_object_order_depends_target_TicTacToe: phony || CMakeFiles/TicTacToe.dir
 
-build CMakeFiles/TicTacToe.dir/main.cpp.o: CXX_COMPILER__TicTacToe_unscanned_Debug /Users/jason/TicTacToe-cpp/main.cpp || cmake_object_order_depends_target_TicTacToe
+build CMakeFiles/TicTacToe.dir/main.cpp.o: CXX_COMPILER__TicTacToe_unscanned_Release /Users/jason/TicTacToe-cpp/main.cpp || cmake_object_order_depends_target_TicTacToe
   DEP_FILE = CMakeFiles/TicTacToe.dir/main.cpp.o.d
-  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics
+  FLAGS = -O3 -DNDEBUG -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics
   OBJECT_DIR = CMakeFiles/TicTacToe.dir
   OBJECT_FILE_DIR = CMakeFiles/TicTacToe.dir
   TARGET_COMPILE_PDB = CMakeFiles/TicTacToe.dir/
@@ -65,8 +65,8 @@ build CMakeFiles/TicTacToe.dir/main.cpp.o: CXX_COMPILER__TicTacToe_unscanned_Deb
 #############################################
 # Link the executable TicTacToe
 
-build TicTacToe: CXX_EXECUTABLE_LINKER__TicTacToe_Debug CMakeFiles/TicTacToe.dir/main.cpp.o
-  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk
+build TicTacToe: CXX_EXECUTABLE_LINKER__TicTacToe_Release CMakeFiles/TicTacToe.dir/main.cpp.o
+  FLAGS = -O3 -DNDEBUG -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk
   OBJECT_DIR = CMakeFiles/TicTacToe.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -79,7 +79,7 @@ build TicTacToe: CXX_EXECUTABLE_LINKER__TicTacToe_Debug CMakeFiles/TicTacToe.dir
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /Users/jason/TicTacToe-cpp/cmake-build-debug && /Users/jason/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  COMMAND = cd /Users/jason/TicTacToe-cpp/cmake-build-release && /Users/jason/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -90,7 +90,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /Users/jason/TicTacToe-cpp/cmake-build-debug && /Users/jason/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake --regenerate-during-build -S/Users/jason/TicTacToe-cpp -B/Users/jason/TicTacToe-cpp/cmake-build-debug
+  COMMAND = cd /Users/jason/TicTacToe-cpp/cmake-build-release && /Users/jason/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake --regenerate-during-build -S/Users/jason/TicTacToe-cpp -B/Users/jason/TicTacToe-cpp/cmake-build-release
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -106,7 +106,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 
 #############################################
-# Folder: /Users/jason/TicTacToe-cpp/cmake-build-debug
+# Folder: /Users/jason/TicTacToe-cpp/cmake-build-release
 
 build all: phony TicTacToe
 
