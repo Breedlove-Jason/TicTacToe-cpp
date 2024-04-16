@@ -1,3 +1,3 @@
-/Users/jason/TicTacToe-cpp/cmake-build-release/CMakeFiles/TicTacToe.dir
-/Users/jason/TicTacToe-cpp/cmake-build-release/CMakeFiles/edit_cache.dir
-/Users/jason/TicTacToe-cpp/cmake-build-release/CMakeFiles/rebuild_cache.dir
+/home/jason/courses/cpp/TicTacToe/cmake-build-release/CMakeFiles/TicTacToe.dir
+/home/jason/courses/cpp/TicTacToe/cmake-build-release/CMakeFiles/edit_cache.dir
+/home/jason/courses/cpp/TicTacToe/cmake-build-release/CMakeFiles/rebuild_cache.dir

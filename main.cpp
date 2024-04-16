@@ -5,13 +5,18 @@
 
 using namespace std;
 
+// Define the size of the game board
 const int BOARD_SIZE = 3;
+
+// Define the type for the game board
 using BoardType = array<array<char, BOARD_SIZE>, BOARD_SIZE>;
 
+// Initialize random number generator
 random_device rd;
 mt19937 gen(rd());
 uniform_int_distribution<> dis(0, 2);
 
+// Function prototypes
 void initializeBoard(BoardType &board);
 
 void printBoard(const BoardType &board);
@@ -26,14 +31,19 @@ void makeMove(BoardType &board, char player, int row, int col);
 
 bool isBoardFull(const BoardType &board);
 
-char checkWin(const BoardType& board);  // Function prototype
+char checkWin(const BoardType &board);
 
+// Main function
 int main() {
+    // Initialize the game board
     BoardType board;
     initializeBoard(board);
+
+    // Initialize game variables
     bool playerXTurn = true;
     char winner = ' ';
 
+    // Main game loop
     while (!isBoardFull(board) && winner == ' ') {
         printBoard(board);
         if (playerXTurn) {
@@ -48,6 +58,7 @@ int main() {
         playerXTurn = !playerXTurn;
     }
 
+    // Print the final game board and the result
     printBoard(board);
     if (winner != ' ') {
         cout << "Game Over! Winner: " << winner << endl;
@@ -57,28 +68,30 @@ int main() {
     return 0;
 }
 
-
-void printBoard(const BoardType &board) {
-    for (int i = 0; i < BOARD_SIZE; i++) {
-        for (int j = 0; j < BOARD_SIZE; j++) {
-            cout << board[i][j];
-            if (j < BOARD_SIZE - 1) {
-                cout << "|";
-            }
-        }
-        if (i < BOARD_SIZE - 1) {
-            cout << "\n-+-+-\n";
-        }
-    }
-    cout << "\n";
-}
-
+// Function to initialize the game board
 void initializeBoard(BoardType &board) {
     for (auto &row: board) {
         row.fill(' ');
     }
 }
 
+// Function to print the game board
+void printBoard(const BoardType &board) {
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            cout << board[i][j];
+            if (j < BOARD_SIZE - 1) {
+                cout << " | ";
+            }
+        }
+        if (i < BOARD_SIZE - 1) {
+            cout << "\n- - - - -\n";
+        }
+    }
+    cout << "\n";
+}
+
+// Function for the game loop for the player
 void gameLoop(BoardType &board) {
     int row, col;
     while (true) {
@@ -104,7 +117,8 @@ void gameLoop(BoardType &board) {
     }
 }
 
-char checkWin(const BoardType& board) {
+// Function to check if there is a winner
+char checkWin(const BoardType &board) {
     // Check horizontal and vertical lines
     for (int i = 0; i < BOARD_SIZE; i++) {
         if (board[i][0] != ' ' && board[i][0] == board[i][1] && board[i][1] == board[i][2])
@@ -122,6 +136,7 @@ char checkWin(const BoardType& board) {
     return ' ';  // No winner yet
 }
 
+// Function for the computer to make a move
 void computerMove(BoardType &board) {
     while (true) {
         int row = dis(gen), col = dis(gen);
@@ -132,14 +147,17 @@ void computerMove(BoardType &board) {
     }
 }
 
+// Function to check if a move is valid
 bool isValidMove(const BoardType &board, int row, int col) {
     return row >= 0 && col >= 0 && row < BOARD_SIZE && col < BOARD_SIZE && board[row][col] == ' ';
 }
 
+// Function to make a move
 void makeMove(BoardType &board, char player, int row, int col) {
     board[row][col] = player;
 }
 
+// Function to check if the board is full
 bool isBoardFull(const BoardType &board) {
     for (const auto &row: board) {
         for (char cell: row) {
