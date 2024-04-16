@@ -26,26 +26,37 @@ void makeMove(BoardType &board, char player, int row, int col);
 
 bool isBoardFull(const BoardType &board);
 
+char checkWin(const BoardType& board);  // Function prototype
+
 int main() {
     BoardType board;
     initializeBoard(board);
     bool playerXTurn = true;
+    char winner = ' ';
 
-    while (!isBoardFull(board)) {
+    while (!isBoardFull(board) && winner == ' ') {
         printBoard(board);
         if (playerXTurn) {
             cout << "Player X's Turn: " << endl;
             gameLoop(board);
+            winner = checkWin(board);
         } else {
             cout << "Player O's Turn: " << endl;
             computerMove(board);
+            winner = checkWin(board);
         }
         playerXTurn = !playerXTurn;
     }
+
     printBoard(board);
-    cout << "Game Over!" << endl;
+    if (winner != ' ') {
+        cout << "Game Over! Winner: " << winner << endl;
+    } else {
+        cout << "Game Over! It's a draw!" << endl;
+    }
     return 0;
 }
+
 
 void printBoard(const BoardType &board) {
     for (int i = 0; i < BOARD_SIZE; i++) {
@@ -91,6 +102,24 @@ void gameLoop(BoardType &board) {
             cout << "That cell is already taken. Try again." << endl;
         }
     }
+}
+
+char checkWin(const BoardType& board) {
+    // Check horizontal and vertical lines
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        if (board[i][0] != ' ' && board[i][0] == board[i][1] && board[i][1] == board[i][2])
+            return board[i][0];
+        if (board[0][i] != ' ' && board[0][i] == board[1][i] && board[1][i] == board[2][i])
+            return board[0][i];
+    }
+
+    // Check diagonals
+    if (board[0][0] != ' ' && board[0][0] == board[1][1] && board[1][1] == board[2][2])
+        return board[0][0];
+    if (board[0][2] != ' ' && board[0][2] == board[1][1] && board[1][1] == board[2][0])
+        return board[0][2];
+
+    return ' ';  // No winner yet
 }
 
 void computerMove(BoardType &board) {
