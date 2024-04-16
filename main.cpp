@@ -25,6 +25,7 @@ void playerMove(BoardType &board);
 void computerMove(BoardType &board);
 
 bool isValidMoveX(BoardType &board, int row, int col);
+bool isValidMoveO(BoardType &board);
 
 int main() {
     // generate random number
@@ -33,6 +34,7 @@ int main() {
     BoardType board;
     initializeBoard(board);
 //    printBoard(board);
+
     playerMove(board);
     printBoard(board);
     computerMove(board);
@@ -104,7 +106,14 @@ bool isValidMoveX(BoardType &board, int row, int col) {
     }
 } //end isValidMove
 
-//bool isValidMoveO(BoardType &board, int row, int col){
-//    int RAND_NUM = dis(gen);
-//
-//}
+bool isValidMoveO(BoardType &board){
+    int RAND_NUM = dis(gen);
+    if (board[RAND_NUM][RAND_NUM] != ' ' )
+    {
+        computerMove(board);
+        return false;
+    }else{
+        board[RAND_NUM][RAND_NUM] = 'O';
+        return true;
+    }
+}
