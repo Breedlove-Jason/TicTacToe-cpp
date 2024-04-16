@@ -2,11 +2,19 @@
 #include <array>
 #include <vector>
 #include <string>
+#include <random>
 
 using namespace std;
 
 const int BOARD_SIZE = 3;
 using BoardType = array<array<char, BOARD_SIZE>, BOARD_SIZE>;
+
+// set up the random number between 0, 2
+random_device rd;
+mt19937 gen(rd());
+uniform_int_distribution<> dis(0, 2);
+
+
 
 void initializeBoard(BoardType &board);
 
@@ -19,6 +27,9 @@ void computerMove(BoardType &board);
 bool isValidMoveX(BoardType &board, int row, int col);
 
 int main() {
+    // generate random number
+    int RAND_NUM = dis(gen);
+
     BoardType board;
     initializeBoard(board);
 //    printBoard(board);
@@ -54,9 +65,17 @@ void initializeBoard(BoardType &board) {
 void playerMove(BoardType &board) {
     int row, col;
     while(true){
+        cout << endl;
         printBoard(board);
-        cout << "Enter a row and column for your move:";
-        cin >> row >> col;
+        cout << endl;
+
+        cout << "Enter a row: 0 to 2: ";
+        cin >> row;
+        cout << "Enter the column: 0 to 2: ";
+        cin >> col;
+        cout << endl;
+
+
         if (isValidMoveX(board, row, col)){
             board[row][col] = 'X';
             break;
@@ -68,12 +87,11 @@ void playerMove(BoardType &board) {
 } //end 'X' playerMove
 
 void computerMove(BoardType &board) {
-    int row, col;
-    cout << "Enter the row and column for your move" << endl;
-    cin >> row >> col;
-    board[row][col] = 'O';
+    int RAND_NUM = dis(gen);
 
-}//end 'X' playerMove
+    board[RAND_NUM][RAND_NUM] = 'O';
+
+}//end 'O' computerMove
 
 bool isValidMoveX(BoardType &board, int row, int col) {
     if (row < 0 || col < 0 || row >= BOARD_SIZE || col >= BOARD_SIZE || board[row][col] != ' ') {
@@ -85,3 +103,8 @@ bool isValidMoveX(BoardType &board, int row, int col) {
         return true;
     }
 } //end isValidMove
+
+//bool isValidMoveO(BoardType &board, int row, int col){
+//    int RAND_NUM = dis(gen);
+//
+//}
